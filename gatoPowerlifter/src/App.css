@@ -1,0 +1,15 @@
+.homeButtons button{
+  margin: 10px;
+}
+
+button{
+  background: red;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.tablaSeries{
+  border-collapse: collapse;
+}
