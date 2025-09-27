@@ -1,9 +1,26 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import './App.css'
 
 export function Ejercicio({ nombre }) {
-  const [iniciado, setIniciado] = useState(false);
-  const [series, setSeries] = useState([]);
+
+  const [iniciado, setIniciado] = useState(() => {
+    const guardado = localStorage.getItem(`${nombre}-iniciado`)
+    return guardado ? JSON.parse(guardado) : false;
+  });
+
+  const [series, setSeries] = useState(() => {
+    const guardado = localStorage.getItem(`${nombre}-series`)
+    return guardado ? JSON.parse(guardado) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(`${nombre}-iniciado`, JSON.stringify(iniciado));
+  }, [iniciado]);
+
+  useEffect(() => {
+    localStorage.setItem(`${nombre}-series`, JSON.stringify(series));
+  }, [series]);
 
   // Añadir nueva fila
   function addRow() {
@@ -96,7 +113,9 @@ export function Ejercicio({ nombre }) {
           <p className="text-muted">Aún no has empezado con {nombre}</p>
           <button
             className="btn btn-danger btn-sm"
-            onClick={() => setIniciado(true)}
+            onClick={() => {
+              setIniciado(true);
+            }}
           >
             Empezar
           </button>

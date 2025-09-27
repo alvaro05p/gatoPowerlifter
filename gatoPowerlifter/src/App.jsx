@@ -1,9 +1,12 @@
-import { useState } from 'react'
 import './App.css'
 import { Ejercicio } from './Ejercicio'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  function borrarLocalStorage(){
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <div className="container text-center py-5">
@@ -23,6 +26,7 @@ function App() {
           <Ejercicio nombre="Sentadilla" />
         </div>
       </div>
+      <button className="btn btn-danger" onClick={borrarLocalStorage}>Borrar todo</button>
     </div>
   )
 }
