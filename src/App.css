@@ -1,0 +1,32 @@
+.homeButtons button{
+  margin: 10px;
+}
+
+button{
+  background: red;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.tablaSeries{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+td, th{
+  padding: 10px;
+  font-size: 20px;
+}
+
+.fotoMain{
+  border-radius: 100px;
+  width: 100px;
+}
