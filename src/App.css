@@ -30,3 +30,11 @@ td, th{
   border-radius: 100px;
   width: 100px;
 }
+
+.modal.show .modal-dialog{
+  z-index: 9999;
+}
+
+.sbd-select{
+  text-align: left;
+}

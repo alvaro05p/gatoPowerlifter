@@ -1,12 +1,28 @@
 import './App.css'
 import { Ejercicio } from './Ejercicio'
+import { useRef } from "react";
+import { Modal } from "bootstrap";
+import ModalTest from './ModalTest';
+import { useState } from 'react';
 
 function App() {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
 
   function borrarLocalStorage(){
     localStorage.clear();
     window.location.reload();
   }
+
+  const iniciarTest = () => {
+    setModalVisible(true);
+  };
+
+  const cerrarModal = () => {
+    setModalVisible(false);
+  };
+
 
   return (
     <div className="container text-center py-5">
@@ -16,6 +32,9 @@ function App() {
         Gestiona tus entrenes de forma gratuita
       </h2>
       
+      <button class="btn btn-danger" onClick={iniciarTest}>Iniciar test</button>
+
+      <ModalTest show={modalVisible} onClose={cerrarModal}></ModalTest>
       
       <div className="row g-4">
         <div className="col-md-4">
