@@ -32,7 +32,7 @@ function App() {
         Gestiona tus entrenes de forma gratuita
       </h2>
       
-      <button class="btn btn-danger" onClick={iniciarTest}>Iniciar test</button>
+      <button className="btn btn-danger" onClick={iniciarTest}>Iniciar test</button>
 
       <ModalTest show={modalVisible} onClose={cerrarModal}></ModalTest>
       
