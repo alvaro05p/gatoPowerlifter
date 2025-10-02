@@ -1,16 +1,29 @@
-import './App.css'
-import { Ejercicio } from './Ejercicio'
-import { useRef } from "react";
-import { Modal } from "bootstrap";
+import './App.css';
+import { Ejercicio } from './Ejercicio';
 import ModalTest from './ModalTest';
+import Datos from './Datos'; // ✅ importa el componente
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [userData, setUserData] = useState(null); // ✅ crea el estado para los datos
 
+  useEffect(() => {
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+  }, []);
 
-  function borrarLocalStorage(){
+  const handleFinish = (data) => {
+    setUserData(data);   // Guardamos lo que viene del modal
+    localStorage.setItem("userData", JSON.stringify(data)); // ✅ Guardamos en localStorage
+    setModalVisible(false); // Cerramos el modal
+  };
+
+  function borrarLocalStorage() {
     localStorage.clear();
     window.location.reload();
   }
@@ -23,7 +36,6 @@ function App() {
     setModalVisible(false);
   };
 
-
   return (
     <div className="container text-center py-5">
       <h1 className="display-4 fw-bold mb-3">Gato Powerlifter</h1>
@@ -34,7 +46,19 @@ function App() {
       
       <button className="btn btn-danger" onClick={iniciarTest}>Iniciar test</button>
 
-      <ModalTest show={modalVisible} onClose={cerrarModal}></ModalTest>
+      <ModalTest 
+        show={modalVisible} 
+        onClose={cerrarModal} 
+        onFinish={handleFinish} 
+      />
+
+      {userData && (
+        <Datos
+          ejercicios={userData.ejercicios}
+          dias={userData.dias}
+          rmValues={userData.rmValues}
+        />
+      )}
       
       <div className="row g-4">
         <div className="col-md-4">
@@ -49,7 +73,7 @@ function App() {
       </div>
       <button className="btn btn-danger" onClick={borrarLocalStorage}>Borrar todo</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
