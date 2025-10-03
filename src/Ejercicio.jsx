@@ -48,10 +48,9 @@ export function Ejercicio({ nombre, id }) {
   return (
     <div className="card bg-dark text-light shadow-sm p-4 mb-4">
       <h2 className="h4 mb-3">{nombre}</h2>
-
       {iniciado ? (
         <>
-          <p className="text-muted">Registros de {nombre}</p>
+          <p className="registros-de">Registros de {nombre}</p>
           <button
             className="btn btn-danger btn-sm mb-3"
             onClick={addRow}
